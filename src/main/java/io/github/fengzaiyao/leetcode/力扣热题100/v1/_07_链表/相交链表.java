@@ -1,0 +1,18 @@
+package io.github.fengzaiyao.leetcode.力扣热题100.v1._07_链表;
+
+import io.github.fengzaiyao.leetcode.model.ListNode;
+
+// https://leetcode.cn/problems/intersection-of-two-linked-lists/?envType=study-plan-v2&id=top-100-liked
+
+public class 相交链表 {
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode a = headA;
+        ListNode b = headB;
+        while (headA != headB) {
+            headA = headA == null ? b : headA.next;
+            headB = headB == null ? a : headB.next;
+        }
+        return headA;
+    }
+}
