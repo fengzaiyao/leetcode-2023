@@ -11,6 +11,22 @@ import java.util.Stack;
 public class _01_二叉树的中序遍历 {
 
     public List<Integer> inorderTraversal(TreeNode root) {
-
+        if (root == null) {
+            return new ArrayList<Integer>();
+        }
+        List<Integer> ans = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            if (!stack.isEmpty()) {
+                TreeNode node = stack.pop();
+                ans.add(node.val);
+                root = node.right;
+            }
+        }
+        return ans;
     }
 }

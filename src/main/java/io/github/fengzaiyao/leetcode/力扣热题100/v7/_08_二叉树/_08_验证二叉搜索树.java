@@ -6,8 +6,19 @@ import io.github.fengzaiyao.leetcode.model.TreeNode;
 
 public class _08_验证二叉搜索树 {
 
-    public boolean isValidBST(TreeNode root) {
+    private TreeNode pre;
 
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        boolean b1 = isValidBST(root.left);
+        if (pre != null && root.val <= pre.val) {
+            return false;
+        }
+        pre = root;
+        boolean b2 = isValidBST(root.right);
+        return b1 && b2;
     }
 
 }

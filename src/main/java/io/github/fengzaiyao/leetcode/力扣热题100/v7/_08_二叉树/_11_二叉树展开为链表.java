@@ -6,7 +6,18 @@ import io.github.fengzaiyao.leetcode.model.TreeNode;
 
 public class _11_二叉树展开为链表 {
 
-    public void flatten(TreeNode root) {
+    // 右左中
 
+    private TreeNode pre;
+
+    public void flatten(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        flatten(root.right);
+        flatten(root.left);
+        root.right = pre;
+        root.left = null;
+        pre = root;
     }
 }
