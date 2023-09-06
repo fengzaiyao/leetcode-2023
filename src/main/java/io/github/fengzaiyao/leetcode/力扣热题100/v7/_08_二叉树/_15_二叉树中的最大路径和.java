@@ -6,7 +6,25 @@ import io.github.fengzaiyao.leetcode.model.TreeNode;
 
 public class _15_二叉树中的最大路径和 {
 
-    public int maxPathSum(TreeNode root) {
+    private int maxSum = Integer.MIN_VALUE;
 
+    public int maxPathSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        doMaxPathSum(root);
+        maxPathSum(root.left);
+        maxPathSum(root.right);
+        return maxSum;
+    }
+
+    public int doMaxPathSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = Math.max(0, doMaxPathSum(root.left));
+        int r = Math.max(0, doMaxPathSum(root.right));
+        maxSum = Math.max(maxSum, l + r + root.val);
+        return Math.max(l, r) + root.val;
     }
 }
