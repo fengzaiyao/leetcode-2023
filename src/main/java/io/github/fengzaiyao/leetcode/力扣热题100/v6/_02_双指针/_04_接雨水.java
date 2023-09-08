@@ -1,7 +1,5 @@
 package io.github.fengzaiyao.leetcode.力扣热题100.v6._02_双指针;
 
-import com.sun.corba.se.impl.oa.toa.TOA;
-
 import java.util.Stack;
 
 // https://leetcode.cn/problems/trapping-rain-water/

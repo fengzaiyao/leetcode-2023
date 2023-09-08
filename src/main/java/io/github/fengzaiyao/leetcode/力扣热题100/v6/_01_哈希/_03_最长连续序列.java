@@ -1,7 +1,5 @@
 package io.github.fengzaiyao.leetcode.力扣热题100.v6._01_哈希;
 
-import sun.nio.cs.ext.MacThai;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
