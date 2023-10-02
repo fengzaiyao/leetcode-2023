@@ -17,7 +17,28 @@ public class _01_矩阵置零 {
     }
 
     public static void setZeroes(int[][] matrix) {
-
+        Set<Integer> rowSet = new HashSet<>();
+        Set<Integer> colSet = new HashSet<>();
+        int row = matrix.length;
+        int col = matrix[0].length;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    rowSet.add(i);
+                    colSet.add(j);
+                }
+            }
+        }
+        for (Integer rowIdx : rowSet) {
+            for (int i = 0; i < col; i++) {
+                matrix[rowIdx][i] = 0;
+            }
+        }
+        for (Integer colIdx : colSet) {
+            for (int i = 0; i < row; i++) {
+                matrix[i][colIdx] = 0;
+            }
+        }
     }
 
 }

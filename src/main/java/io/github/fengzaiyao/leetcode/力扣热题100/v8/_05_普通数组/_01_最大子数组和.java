@@ -9,6 +9,15 @@ public class _01_最大子数组和 {
     }
 
     public static int maxSubArray(int[] nums) {
-
+        int cur = nums[0];
+        int max = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (cur < 0) {
+                cur = 0;
+            }
+            cur += nums[i];
+            max = Math.max(max, cur);
+        }
+        return max;
     }
 }

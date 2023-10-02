@@ -16,6 +16,17 @@ public class _02_合并区间 {
     }
 
     public static int[][] merge(int[][] intervals) {
-
+        List<int[]> ans = new ArrayList<>();
+        Arrays.sort(intervals, (o1, o2) -> o1[0] != o2[0] ? o1[0] - o2[0] : o1[1] - o2[1]);
+        for (int i = 0; i < intervals.length; i++) {
+            int l = intervals[i][0];
+            int r = intervals[i][1];
+            while (i + 1 < intervals.length && r >= intervals[i + 1][0]) {
+                r = Math.max(r, intervals[i + 1][1]);
+                i++;
+            }
+            ans.add(new int[]{l, r});
+        }
+        return ans.toArray(new int[0][]);
     }
 }

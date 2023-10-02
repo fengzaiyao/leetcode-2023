@@ -13,6 +13,19 @@ public class _03_轮转数组 {
     }
 
     public static void rotate(int[] nums, int k) {
+        k = k % nums.length;
+        reverseArr(nums, 0, nums.length - 1);
+        reverseArr(nums, 0, k - 1);
+        reverseArr(nums, k, nums.length - 1);
+    }
 
+    public static void reverseArr(int[] nums, int l, int r) {
+        while (l < r) {
+            int temp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = temp;
+            l++;
+            r--;
+        }
     }
 }

@@ -12,7 +12,22 @@ public class _04_除自身以外数组的乘积 {
     }
 
     public static int[] productExceptSelf(int[] nums) {
-
+        int len = nums.length;
+        int[] ret = new int[len];
+        int[] l = new int[len];
+        int[] r = new int[len];
+        l[0] = 1;
+        r[len - 1] = 1;
+        for (int i = 1; i < len; i++) {
+            l[i] = l[i - 1] * nums[i - 1];
+        }
+        for (int i = len - 2; i >= 0; i--) {
+            r[i] = r[i + 1] * nums[i + 1];
+        }
+        for (int i = 0; i < len; i++) {
+            ret[i] = l[i] * r[i];
+        }
+        return ret;
     }
 
 }
