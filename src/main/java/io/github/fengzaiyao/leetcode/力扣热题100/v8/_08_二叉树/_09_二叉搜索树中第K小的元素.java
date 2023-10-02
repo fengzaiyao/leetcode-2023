@@ -6,7 +6,25 @@ import io.github.fengzaiyao.leetcode.model.TreeNode;
 
 public class _09_二叉搜索树中第K小的元素 {
 
-    public int kthSmallest(TreeNode root, int k) {
+    private int kth = -1;
 
+    private Integer ret = null;
+
+    public int kthSmallest(TreeNode root, int k) {
+        kth = k;
+        doKthSmallest(root);
+        return ret;
+    }
+
+    public void doKthSmallest(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        doKthSmallest(root.left);
+        if (--kth == 0) {
+            ret = root.val;
+            return;
+        }
+        doKthSmallest(root.right);
     }
 }

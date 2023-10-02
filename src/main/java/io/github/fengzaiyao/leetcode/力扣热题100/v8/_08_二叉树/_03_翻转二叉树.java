@@ -7,6 +7,13 @@ import io.github.fengzaiyao.leetcode.model.TreeNode;
 public class _03_翻转二叉树 {
 
     public TreeNode invertTree(TreeNode root) {
-
+        if (root == null) {
+            return null;
+        }
+        TreeNode l = invertTree(root.left);
+        TreeNode r = invertTree(root.right);
+        root.left = r;
+        root.right = l;
+        return root;
     }
 }

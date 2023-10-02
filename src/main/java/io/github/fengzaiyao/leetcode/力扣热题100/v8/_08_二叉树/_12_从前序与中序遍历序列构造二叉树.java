@@ -9,7 +9,26 @@ import java.util.Map;
 
 public class _12_从前序与中序遍历序列构造二叉树 {
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    private Map<Integer, Integer> map = new HashMap<>();
 
+    private int curIdx = 0;
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        return doBuildTree(preorder, 0, preorder.length - 1);
+    }
+
+    private TreeNode doBuildTree(int[] preorder, int l, int r) {
+        if (l > r) {
+            return null;
+        }
+        int num = preorder[curIdx++];
+        Integer idx = map.get(num);
+        TreeNode node = new TreeNode(num);
+        node.left = doBuildTree(preorder, l, idx - 1);
+        node.right = doBuildTree(preorder, idx + 1, r);
+        return node;
     }
 }
