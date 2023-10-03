@@ -11,6 +11,18 @@ public class _03_最长回文子串 {
     }
 
     public static String longestPalindrome(String s) {
-
+        String result = null;
+        for (int i = 0; i < 2 * s.length() - 1; i++) {
+            int l = i / 2;
+            int r = (i % 2) + l;
+            while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+                if (result == null || r - l + 1 >= result.length()) {
+                    result = s.substring(l, r + 1);
+                }
+                l--;
+                r++;
+            }
+        }
+        return result;
     }
 }
