@@ -13,6 +13,32 @@ public class _10_最长有效括号 {
     }
 
     public static int longestValidParentheses(String s) {
-
+        Stack<Integer> stack = new Stack<>();
+        int[] dp = new int[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.add(i);
+            } else {
+                if (stack.isEmpty()) {
+                    dp[i] = 1;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        while (!stack.isEmpty()) {
+            dp[stack.pop()] = 1;
+        }
+        int maxLen = 0;
+        int curLen = 0;
+        for (int i = 0; i < dp.length; i++) {
+            if (dp[i] == 1) {
+                curLen = 0;
+            } else {
+                curLen++;
+            }
+            maxLen = Math.max(maxLen, curLen);
+        }
+        return maxLen;
     }
 }

@@ -12,6 +12,16 @@ public class _06_单词拆分 {
     }
 
     public static boolean wordBreak(String s, List<String> wordDict) {
-
+        int len = s.length();
+        boolean[] dp = new boolean[len + 1];
+        dp[0] = true;
+        for (int i = 1; i <= len; i++) {
+            for (String word : wordDict) {
+                if (i >= word.length() && s.substring(i - word.length(), i).equals(word)) {
+                    dp[i] = dp[i] || dp[i - word.length()];
+                }
+            }
+        }
+        return dp[len];
     }
 }
