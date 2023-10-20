@@ -1,0 +1,46 @@
+package io.github.fengzaiyao.leetcode.力扣热题100.v10._10_回溯;
+
+// https://leetcode.cn/problems/word-search/?envType=study-plan-v2&id=top-100-liked
+
+public class _06_单词搜索 {
+
+    public static void main(String[] args) {
+        System.out.println(exist(new char[][]{{'a'}}, "a"));
+    }
+
+    public static boolean exist(char[][] board, String word) {
+        int row = board.length;
+        int col = board[0].length;
+        boolean[][] visit = new boolean[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (doExist(visit, board, word, i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean doExist(boolean[][] visit, char[][] board, String word, int i, int j, int begin) {
+        if (begin == word.length()) {
+            return true;
+        }
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visit[i][j]) {
+            return false;
+        }
+        if (word.charAt(begin) != board[i][j]) {
+            return false;
+        }
+        visit[i][j] = true;
+        boolean b1 = doExist(visit, board, word, i + 1, j, begin + 1);
+        boolean b2 = doExist(visit, board, word, i, j + 1, begin + 1);
+        boolean b3 = doExist(visit, board, word, i - 1, j, begin + 1);
+        boolean b4 = doExist(visit, board, word, i, j - 1, begin + 1);
+        if (b1 || b2 || b3 || b4) {
+            return true;
+        }
+        visit[i][j] = false;
+        return false;
+    }
+}
